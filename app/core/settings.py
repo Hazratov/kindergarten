@@ -20,6 +20,9 @@ class Settings(BaseSettings):
     REDIS_HOST: str
     REDIS_PORT: str
 
+    database_url: str
+    redis_url: str
+
     JWT_ENCRYPT_ALGORITHM: str
     JWT_SECRET_KEY: str
     JWT_EXPIRE_SECONDS: int

@@ -5,10 +5,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.models.base import Base, TimestampMixin
 
 
-# class UserRole(PyEnum):
-#     ADMIN = "admin"
-#     COOK = "cook"  # Oshpaz
-#     MANAGER = "manager"
+class UserRole(PyEnum):
+    admin = "admin"
+    cook = "cook"  # Oshpaz
+    manager = "manager"
 
 
 class User(Base, TimestampMixin):
@@ -39,4 +39,4 @@ class User(Base, TimestampMixin):
     )
 
     def __repr__(self) -> str:
-        return f"<User(username='{self.username}', role='{self.role.value}')>"
+        return f"<User(username='{self.username}', role='{self.role}')>"

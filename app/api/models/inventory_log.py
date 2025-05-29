@@ -1,25 +1,25 @@
 from enum import Enum as PyEnum
 from datetime import datetime
-from sqlalchemy import ForeignKey, Float, String, Integer, DateTime, Enum
+from sqlalchemy import ForeignKey, Float, String, Integer, DateTime, Enum, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import Optional
-from app.core.models.base import Base
+from app.core.models.base import Base, TimestampMixin
 
 
 class ChangeType(PyEnum):
-    DELIVERY = "delivery"  # Yetkazib berish
-    CONSUMPTION = "consumption"  # Iste'mol
-    WASTE = "waste"  # Isrof
-    ADJUSTMENT = "adjustment"  # Tuzatish
+    delivery = "delivery"  # Yetkazib berish
+    consumption = "consumption"  # Iste'mol
+    waste = "waste"  # Isrof
+    adjustment = "adjustment"  # Tuzatish
 
 
-class InventoryLog(Base):
+class InventoryLog(Base, TimestampMixin):
     __tablename__ = "inventory_logs"
 
     ingredient_id: Mapped[int] = mapped_column(
         ForeignKey("ingredients.id", ondelete="RESTRICT"), nullable=False
     )
-    change_amount: Mapped[float] = mapped_column(Float, nullable=False)  # +/-
+    change_amount: Mapped[float] = mapped_column(Float, nullable=False)
     change_type: Mapped[ChangeType] = mapped_column(Enum(ChangeType), nullable=False)
     reason: Mapped[str] = mapped_column(String(255), nullable=False)
     reference_id: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
@@ -28,7 +28,6 @@ class InventoryLog(Base):
     )
     previous_quantity: Mapped[float] = mapped_column(Float, nullable=False)
     new_quantity: Mapped[float] = mapped_column(Float, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
 
     # Relationships
     ingredient: Mapped["Ingredient"] = relationship(

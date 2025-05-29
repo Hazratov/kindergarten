@@ -7,14 +7,14 @@ from alembic import context
 
 from app.core.models.base import Base
 from app.core.settings import get_settings
-from app.api.models.user import User
-from app.api.models.recipe import Recipe
+from app.api.models.user import User, UserRole
+from app.api.models.recipe import Recipe, DifficultyLevel
 from app.api.models.recipe_ingredient import RecipeIngredient
 from app.api.models.ingredient import Ingredient
-from app.api.models.meal_log import MealLog
-from app.api.models.inventory_log import InventoryLog
+from app.api.models.meal_log import MealLog, MealStatus
+from app.api.models.inventory_log import InventoryLog, ChangeType
 from app.api.models.monthly_report import MonthlyReport
-from app.api.models.notification import Notification
+from app.api.models.notification import Notification, NotificationType, NotificationPriority
 
 
 settings = get_settings()

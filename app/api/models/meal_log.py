@@ -7,8 +7,8 @@ from app.core.models.base import Base
 
 
 class MealStatus(PyEnum):
-    COMPLETED = "completed"
-    CANCELLED = "cancelled"
+    completed = "completed"
+    cancelled = "cancelled"
 
 
 class MealLog(Base):
@@ -25,7 +25,7 @@ class MealLog(Base):
     children_count: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     notes: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     status: Mapped[MealStatus] = mapped_column(
-        Enum(MealStatus), default=MealStatus.COMPLETED
+        Enum(MealStatus), default=MealStatus.completed
     )
 
     # Relationships

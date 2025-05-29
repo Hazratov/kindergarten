@@ -6,9 +6,9 @@ from app.core.models.base import Base, TimestampMixin
 
 
 class DifficultyLevel(PyEnum):
-    EASY = "easy"
-    MEDIUM = "medium"
-    HARD = "hard"
+    easy = "easy"
+    medium = "medium"
+    hard = "hard"
 
 
 class Recipe(Base, TimestampMixin):
@@ -20,7 +20,7 @@ class Recipe(Base, TimestampMixin):
     cooking_time: Mapped[int] = mapped_column(Integer, default=0)  # minutes
     servings_count: Mapped[int] = mapped_column(Integer, default=1)  # portions
     difficulty_level: Mapped[DifficultyLevel] = mapped_column(
-        Enum(DifficultyLevel), default=DifficultyLevel.EASY
+        Enum(DifficultyLevel, name="difficultylevel"), default=DifficultyLevel.easy
     )
     instructions: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
