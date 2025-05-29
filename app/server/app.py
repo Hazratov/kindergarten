@@ -10,6 +10,7 @@ from app.api.views.inventory_log import router as inventory_log_router
 from app.api.views.websocket import router as websocket_router
 from app.api.views.meals import router as meals_router
 from app.api.views.monthly_reports import router as monthly_reports_router
+from app.api.views.notifications import router as notifications_router
 
 settings = get_settings()
 
@@ -28,6 +29,7 @@ def create_app() -> CORSMiddleware:
     app_.include_router(websocket_router)
     app_.include_router(meals_router)
     app_.include_router(monthly_reports_router)
+    app_.include_router(notifications_router)
 
 
     return CORSMiddleware(

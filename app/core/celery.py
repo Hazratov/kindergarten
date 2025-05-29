@@ -10,6 +10,7 @@ celery = Celery(
     include=[
         "app.api.tasks.inventory_tasks",
         "app.api.tasks.monthly_reports",
+        "app.api.tasks.notifications"
         # boshqa task modullar ro'yxati
     ],
 )

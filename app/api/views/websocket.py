@@ -10,5 +10,5 @@ async def inventory_updates_ws(
     websocket: WebSocket,
     current_user=Depends(get_current_active_user)
 ):
-    # Siz bu yerda foydalanuvchini tekshirish, autentifikatsiya qilishingiz mumkin
+
     await websocket_endpoint(websocket)
